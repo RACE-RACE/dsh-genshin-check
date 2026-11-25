@@ -44,7 +44,7 @@ function createContextMessage(text, summary) {
       id: randomUUID(),
       role: 'user',
       content: [{ type: 'text', text }],
-      source: { kind: name, form: 'notice', summary: summary.slice(0, 119) },
+      source: { kind: name, form: 'notice', summary: summary.length > 118 ? `${summary.slice(0, 117)}…` : summary },
     }),
   )
 }
@@ -256,7 +256,7 @@ export function apply(ctx, config) {
 
       return {
         ...decision,
-        messages: [...decision.messages, createContextMessage(text, settings.message)],
+        messages: [...(decision.messages ?? []), createContextMessage(text, settings.message)],
       }
     },
     { prepend: true },

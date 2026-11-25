@@ -5,6 +5,7 @@
         url: https://ys.mihoyo.com/
         message: 有电脑不玩原神？
         openBrowser: true
+        openDelayMs: 2500
         checkTimeoutMs: 4000
         cacheTtlMs: 600000
         onUnknown: treat-as-missing

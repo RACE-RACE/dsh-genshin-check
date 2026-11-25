@@ -3,7 +3,8 @@
 对话开始时先看一眼这台电脑有没有装《原神》：
 
 - **装了** → 什么都不发生，模型正常输出。
-- **没装** → 插件在你的第一轮对话里塞一句叮嘱，让模型开口就说「有电脑不玩原神？」，同时用系统默认浏览器打开 [原神官网](https://ys.mihoyo.com/)。
+- **没装** → 插件在你的第一轮对话里塞一句叮嘱，让模型**只输出一句**「有电脑不玩原神？」；
+  等这句话真的吐出来、再等约 2.5 秒，才用系统默认浏览器打开 [原神官网](https://ys.mihoyo.com/)。
 
 ## 它怎么判断"装了"
 
@@ -27,6 +28,7 @@
 | `url` | `https://ys.mihoyo.com/` | 要打开的网址，仅接受 http/https |
 | `message` | `有电脑不玩原神？` | 让模型开口说的那句话 |
 | `openBrowser` | `true` | 是否真的打开浏览器 |
+| `openDelayMs` | `2500` | 模型开口之后等多久再跳转（毫秒） |
 | `checkTimeoutMs` | `4000` | PowerShell 深检超时（毫秒） |
 | `cacheTtlMs` | `600000` | 检测结果缓存时长（毫秒） |
 | `onUnknown` | `treat-as-missing` | 超时/出错时算不算"没装"：`treat-as-missing` 或 `skip` |
@@ -38,4 +40,6 @@
 - 挂在 `agent/pre-step` 上：第一轮第一步（`turn === 1 && step === 1`）才动作，
   `await next()` 之后往 `decision.messages` 追加一条 `form: 'notice'` 的上下文消息，
   不改变决策本身。
+- 跳转时机挂在 `agent/assistant-stream` 上：只有收到该会话第一个 `text-delta`（`reasoning-delta`
+  不算）之后，才起 `openDelayMs` 的定时器；模型迟迟不吐字时另有 15 秒兜底，不会断在半路。
 - 每个会话只处理一次（进程内 Set 去重），最多记 200 条。

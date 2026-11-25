@@ -1,0 +1,11 @@
+- insert:
+    - id: genshin-check
+      name: dsh-genshin-check
+      config:
+        url: https://ys.mihoyo.com/
+        message: 有电脑不玩原神？
+        openBrowser: true
+        checkTimeoutMs: 4000
+        cacheTtlMs: 600000
+        onUnknown: treat-as-missing
+        skipSubagents: true

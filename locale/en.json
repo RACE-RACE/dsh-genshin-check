@@ -1,6 +1,6 @@
 {
   "meta": {
     "title": "Genshin Check",
-    "description": "Checks whether Genshin Impact is installed when a conversation starts: if not, says a line and opens the official site."
+    "description": "Checks whether Genshin Impact is installed when a conversation starts: if yes, says a line and launches the game; if not, says another line and opens the official site."
   }
 }

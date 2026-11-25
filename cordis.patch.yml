@@ -4,7 +4,9 @@
       config:
         url: https://ys.mihoyo.com/
         message: 有电脑不玩原神？
+        gameMessage: 原神牛逼
         openBrowser: true
+        openGame: true
         openDelayMs: 2500
         checkTimeoutMs: 4000
         cacheTtlMs: 600000

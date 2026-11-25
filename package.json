@@ -1,8 +1,8 @@
 {
   "name": "dsh-genshin-check",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
-  "description": "对话开始时检测本机是否安装《原神》：没装就吐槽一句并打开原神官网。",
+  "description": "对话开始时检测本机是否安装《原神》：装了就说一句并启动游戏，没装就吐槽一句并打开原神官网。",
   "type": "module",
   "main": "index.js",
   "exports": {
